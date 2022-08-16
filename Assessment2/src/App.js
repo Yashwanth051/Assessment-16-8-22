@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import {commerce} from './lib/commerce';
 import Products from './components/Products/Products';
-import NavbarComp from './components/Navbar/NavbarComp';
+import "./App.css";
 import Cart from './components/Cart/Cart';
-
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import ProductView from './components/ProductView/ProductView';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -73,11 +75,26 @@ import SignUp from './components/LoginandSignup/SignUp';
   
     return (
       <div>
-        <NavbarComp/>
+       <Router>
+            <div>
+    <Navbar className="navv">
+      <Container fluid>
+        <Navbar.Brand href="#"><h6 className="title">Book Store</h6></Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+            <Nav.Link as={Link} to={"/login"}><h4>Login</h4></Nav.Link>
+            <Nav.Link as={Link} to={"/signup"}><h4>Sign Up</h4></Nav.Link>
+            <Nav.Link as={Link} to={"/about"}><h4>About</h4></Nav.Link>
+            <Nav.Link as={Link} to={"/contact"}><h4>Contact</h4></Nav.Link>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+ </div>
+            </Router>
       <Router>
         <div style={{ display: 'flex' }}>
           <CssBaseline />
-          <NavbarComp totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
+          <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
           <Switch>
             <Route exact path="/">
               <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
